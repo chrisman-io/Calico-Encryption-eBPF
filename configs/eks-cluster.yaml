@@ -2,8 +2,8 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: "chris-ebpf-lab"
-  region: "us-west-2"
+  name: ""
+  region: "$AWS_REGION"
   version: "1.20"
 
 #availabilityZones: ["", "", ""]
@@ -14,16 +14,16 @@ managedNodeGroups:
   desiredCapacity: 2
   # choose proper size for worker node instance as the node size detemines the number of pods that a node can run
   # it's limited by a max number of interfeces and private IPs per interface
-  # t3.large has max 3 interfaces and allows up to 12 IPs per interface, therefore can run up to 36 pods per node
+  # m5.large has max 3 interfaces and allows up to 10 IPs per interface, therefore can run up to 30 pods per node
   # see: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI
   instanceType: "m5.large"
   ssh:
     # uncomment lines below to allow SSH access to the nodes using existing EC2 key pair
-    publicKeyName: chris-aws-uw2-keypair
+    publicKeyName: $KEYPAIR_NAME
     allow: true
   overrideBootstrapCommand: |
       #!/bin/bash
-      /etc/eks/bootstrap.sh chris-ebpf-lab
+      /etc/eks/bootstrap.sh $CLUSTER_NAME
 # enable all of the control plane logs:
 cloudWatch:
   clusterLogging:

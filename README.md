@@ -12,43 +12,9 @@ Compatible Ubuntu AMI images can be found [here](https://cloud-images.ubuntu.com
 export CLUSTER_NAME=<cluster name>
 export KEYPAIR_NAME=<aws keypair>
 export AWS_REGION=<aws region>
-
-# create config file for cluster creation
-
-cat > configs/eks-cluster.yaml << EOF
-apiVersion: eksctl.io/v1alpha5
-kind: ClusterConfig
-
-metadata:
-  name: "$CLUSTER_NAME"
-  region: "$AWS_REGION"
-  version: "1.20"
-
-#availabilityZones: ["", "", ""]
-
-managedNodeGroups:
-- name: "ng-m5-large"
-  ami: "ami-006df5a9e91a213e3"
-  desiredCapacity: 2
-  # choose proper size for worker node instance as the node size detemines the number of pods that a node can run
-  # it's limited by a max number of interfeces and private IPs per interface
-  # t3.large has max 3 interfaces and allows up to 12 IPs per interface, therefore can run up to 36 pods per node
-  # see: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI
-  instanceType: "m5.large"
-  ssh:
-    # uncomment lines below to allow SSH access to the nodes using existing EC2 key pair
-    publicKeyName: $KEYPAIR_NAME
-    allow: true
-  overrideBootstrapCommand: |
-      #!/bin/bash
-      /etc/eks/bootstrap.sh $CLUSTER_NAME
-# enable all of the control plane logs:
-cloudWatch:
-  clusterLogging:
-    enableTypes: ["*"]
-EOF    
 ```
-Substitute variable into the YAML file and create cluster
+
+Substitute variables into the `eks-cluster.yaml` file and create cluster
 
 ```bash
 sed -i "" "s/\$CLUSTER_NAME/${CLUSTER_NAME}/g" configs/eks-cluster.yaml
