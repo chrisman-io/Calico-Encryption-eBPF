@@ -5,7 +5,7 @@ Demo using EKS cluster for WireGuard and eBPF. This demo will deploy an EKS clus
 
 1. Deploy EKS cluster
 
-Compatible Ubuntu AMI images can be found [here](https://cloud-images.ubuntu.com/aws-eks/).
+Compatible Ubuntu AMI images can be found [here](https://cloud-images.ubuntu.com/aws-eks/). Ensure you use the correct AMI for your region.
 
 ```bash
 # set variables
@@ -78,10 +78,10 @@ ip-192-168-5-207.us-west-2.compute.internal    Ready    <none>   7m16s   v1.21.2
 
 4. Install Calico Enterprise
 Install Calico Enterprise as per [documentation](https://docs.tigera.io/getting-started/kubernetes/eks).
+<br>
 
-## eBPF
 
-### Deploy YaoBank app and Demo IP Tables
+## Deploy YaoBank app and Demo IP Tables
 
 Deploying a simple application *Yet Another Online Bank* and show how the Client or Source IP address is not preserved through to the target server
 
