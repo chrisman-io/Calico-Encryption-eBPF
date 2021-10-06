@@ -46,6 +46,7 @@ managedNodeGroups:
 cloudWatch:
   clusterLogging:
     enableTypes: ["*"]
+EOF    
 ```
 Substitute variable into the YAML file and create cluster
 
