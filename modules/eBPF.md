@@ -155,4 +155,4 @@ We can see that a public IP address is now logged which confirms Direct Server R
 <br>
 <br>
 
-Next steps: [WireGuard Encryption](./modules/wireguard-encryption.md)
+Next steps: [WireGuard Encryption](../modules/wireguard-encryption.md)
