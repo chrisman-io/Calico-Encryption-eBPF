@@ -5,7 +5,7 @@ Demo using EKS cluster for WireGuard and eBPF. This demo will deploy an EKS clus
 
 1. Deploy EKS cluster
 
-Compatible Ubuntu AMI images can be found [here](https://cloud-images.ubuntu.com/aws-eks/). Ensure you use the correct AMI for your region.
+Compatible Ubuntu AMI images can be found [here](https://cloud-images.ubuntu.com/aws-eks/). Ensure you use the correct AMI for your region as this will dictate which Kubernetes version is deployed.
 
 ```bash
 # set variables
